@@ -11,6 +11,7 @@ class App extends Component {
         </div>
         <p className="App-intro">
           <Link to="/booking">Walk In</Link>
+          <Link to="/availability">Availabilty</Link>
         </p>
       </div>
     );
