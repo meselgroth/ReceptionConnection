@@ -11,4 +11,7 @@ export default class BookingService {
         }
         this.bookingRepo.Refresh();
     }
+    GetBookings(){
+        return {then:((callback)=>{callback(this.bookingRepo.bookings)})};
+    }
 }
