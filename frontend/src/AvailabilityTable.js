@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './AvailabilityTable.css';
 import AvailabilityRow from './AvailabilityRow';
 import BedLayoutService from './services/BedLayoutService';
+import DateService from './services/DateService';
 
 export default class AvailabilityTable extends Component {
     constructor({startDate, endDate, bookingService, roomRepo}) {
@@ -10,8 +11,7 @@ export default class AvailabilityTable extends Component {
         this.bookingService = bookingService;
         this.roomRepo = roomRepo;
 
-        let currentTime = new Date();
-        this.startDate = startDate ? startDate : new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate());
+        this.startDate = startDate ? startDate : DateService.CurrentDate();
         this.endDate = endDate ? endDate : new Date(this.startDate.getFullYear(), this.startDate.getMonth() + 1, this.startDate.getDate());
         this.bedLayoutService = new BedLayoutService(this.startDate, this.endDate);
     }

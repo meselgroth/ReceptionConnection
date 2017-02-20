@@ -1,9 +1,11 @@
+import DateService from './DateService';
+
 export default class BedLayoutService {
     constructor(startDate, endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
 
-        this.days = BedLayoutService.MakeDays(startDate, endDate);
+        this.days = DateService.MakeDays(startDate, endDate);
         this.errors = '';
         this.overbookings = [];
     }
@@ -13,6 +15,7 @@ export default class BedLayoutService {
     }
     MakeLayout(bookings, roomBeds) {
         let beds = [];
+        this.overbookings = [];
 
         for (let roomBed of roomBeds) {
             let bed = { days: [] };
@@ -32,11 +35,11 @@ export default class BedLayoutService {
                 this.errors += 'Bad booking, unrecognised room: ' + booking.name + '\n';
                 continue;
             }
-            let startDay = BedLayoutService.CalcDaysBetween(this.startDate, booking.checkin);
-            let numOfNights = BedLayoutService.CalcDaysBetween(booking.checkin, booking.checkout);
+            let startDay = DateService.CalcDaysBetween(this.startDate, booking.checkin);
+            let numOfNights = DateService.CalcDaysBetween(booking.checkin, booking.checkout);
             if (startDay < 0) {
                 startDay = 0;
-                numOfNights = BedLayoutService.CalcDaysBetween(this.startDate, booking.checkout);
+                numOfNights = DateService.CalcDaysBetween(this.startDate, booking.checkout);
             }
             for (let dayIndex = startDay; dayIndex < numOfNights + startDay; dayIndex++) {
                 if (dayIndex >= this.days.length) break;
@@ -56,20 +59,5 @@ export default class BedLayoutService {
             roomBeds.push({ id: overbooking.id, room: overbooking.room });
         }
         return this.MakeLayout(this.overbookings, roomBeds);
-    }
-    static MakeDays(startDate, endDate) {
-        let numofdays = BedLayoutService.CalcDaysBetween(startDate, endDate);
-        let days = [];
-        for (let i = 0; i < numofdays; i++) {
-            let tmpDate = new Date(startDate);
-            days.push(new Date(tmpDate.setDate(startDate.getDate() + i)));
-        }
-        return days;
-    }
-    static CalcDaysBetween(startDate, endDate) {
-        let oneDay = 1000 * 60 * 60 * 24;
-        let startMillisecond = new Date(startDate).getTime();
-        let endMillisecond = new Date(endDate).getTime();
-        return Math.round((endMillisecond - startMillisecond) / oneDay);
     }
 }

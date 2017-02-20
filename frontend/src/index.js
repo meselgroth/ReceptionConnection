@@ -17,7 +17,7 @@ const bookingService = new BookingService(bookingRepo);
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={App} routeService={routeService} bookingService={bookingService} roomRepo={roomRepo} />
-    <Route path="/booking" component={BookingPage} routeService={routeService} bookingService={bookingService}/>
+    <Route path="/booking" component={BookingPage} routeService={routeService} bookingService={bookingService} roomRepo={roomRepo}/>
   </Router>,
   document.getElementById('root')
 );
