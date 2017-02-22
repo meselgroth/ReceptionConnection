@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import AvailabilityTable from './AvailabilityTable';
+import {Button} from 'react-bootstrap';
 import './App.css';
 
 export default class App extends Component {
@@ -11,14 +12,10 @@ export default class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Welcome to Chill Out Reception</h2>
-        </div>
+      <div>
+          <h1>Chill Out Room Layout<Link to="/booking" className='pull-right'><Button bsStyle="primary">Add Booking</Button></Link></h1>
         <AvailabilityTable bookingService={this.bookingService} roomRepo={this.roomRepo} />
-        <p className="App-intro">
-          <Link to="/booking">Walk In</Link>
-        </p>
+        
       </div>
     );
   }

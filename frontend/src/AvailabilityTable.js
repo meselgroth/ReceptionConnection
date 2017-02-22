@@ -3,6 +3,7 @@ import './AvailabilityTable.css';
 import AvailabilityRow from './AvailabilityRow';
 import BedLayoutService from './services/BedLayoutService';
 import DateService from './services/DateService';
+import { Table } from 'react-bootstrap';
 
 export default class AvailabilityTable extends Component {
     constructor({startDate, endDate, bookingService, roomRepo}) {
@@ -27,9 +28,15 @@ export default class AvailabilityTable extends Component {
         this.setState({ beds, days, overbookingBeds });
     }
     render() {
-        let availRows = this.state.beds.map((b) => (
-            <AvailabilityRow key={b.id} bed={b} />
-        ));
+        let room = '';
+        let titleRow = false;
+        let alternate = true;
+        let availRows = this.state.beds.map((b) => {
+            titleRow = b.room !== room;
+            room = b.room;
+            if (titleRow) { alternate = !alternate; }
+            return <AvailabilityRow key={b.id} bed={b} titleRow={titleRow} alternate={alternate} />
+        });
         let overBookingRows = this.state.overbookingBeds.map((b) => (
             <AvailabilityRow key={b.id} bed={b} />
         ));
@@ -42,24 +49,24 @@ export default class AvailabilityTable extends Component {
             </tbody>
         ));
         let dayHeaders = this.state.days.map((d) => (
-            <th key={d.getTime()}>{d.toLocaleString(undefined, { month: 'short', day: 'numeric' })}</th>
+            <th key={d.getTime()}>{DateService.DayMonth(d)}</th>
         ));
         return (
-            <div><h1>Availability</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Room</th>
-                            {dayHeaders}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {availRows}
-                    </tbody>
-                    {overBookings}
-                </table>
-                <div>{this.bedLayoutService.errors}</div>
-            </div>
+            <Table condensed hover>
+                <thead>
+                    <tr>
+                        <th>Room</th>
+                        {dayHeaders}
+                    </tr>
+                </thead>
+                <tbody>
+                    {availRows}
+                </tbody>
+                {overBookings}
+                <tfoot>
+                    {this.bedLayoutService.errors}
+                </tfoot>
+            </Table>
         );
     }
 }

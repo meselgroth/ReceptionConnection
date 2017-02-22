@@ -25,4 +25,8 @@ export default class DateService {
         let endMillisecond = new Date(endDate).getTime();
         return Math.round((endMillisecond - startMillisecond) / oneDay);
     }
+    static DayMonth(date){
+        return date.toLocaleString(undefined, { day: 'numeric' }) + ' ' +
+        date.toLocaleString(undefined, { month: 'short' });
+    }
 }

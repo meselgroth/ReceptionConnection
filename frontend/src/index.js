@@ -7,6 +7,8 @@ import RoomRepo from './services/RoomRepo';
 import BookingService from './services/BookingService';
 import App from './App';
 import BookingPage from './BookingPage';
+import {} from 'bootstrap/dist/css/bootstrap.css';
+import {} from 'bootstrap/dist/css/bootstrap-theme.css';
 import './index.css';
 
 const routeService = new RouteService();
