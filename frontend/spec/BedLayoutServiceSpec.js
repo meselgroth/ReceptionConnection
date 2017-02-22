@@ -28,6 +28,16 @@ describe("BedLayoutService", () => {
     expect(beds[0].days[2].name).toBe('james');
     expect(beds[0].days[3].name).toBeUndefined();
   });
+
+  it("MakeLayout puts 2 pax booking in correct days", () => {
+    bookings = [{ name: 'james', checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4), room: 'Fan', pax: 2 }];
+    let beds = bedLayoutService.MakeLayout(bookings, roomBeds);
+
+    expect(beds[1].days[1].name).toBe('james');
+    expect(beds[1].days[2].name).toBe('james');
+    expect(beds[2].days[1].name).toBe('james');
+    expect(beds[2].days[2].name).toBe('james');
+  });
   it("MakeLayout puts booking outside of current view in correct days", () => {
     bookings = [{ name: 'james', checkin: new Date(2016, 1, 1), checkout: new Date(2017, 1, 3) }];
     let beds = bedLayoutService.MakeLayout(bookings, roomBeds);

@@ -5,7 +5,7 @@ export default class RoomRepo {
         let bedCount =0;
         for (let room of this.GetRooms()) {
             for (let i = 0; i < room.beds; i++) {
-                roomBeds.push({ id: bedCount, room: room.name });
+                roomBeds.push({ id: bedCount, room: room.name, beds:room.beds });
                 bedCount++;
             }
         }

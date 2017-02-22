@@ -21,6 +21,7 @@ export default class BedLayoutService {
             let bed = { days: [] };
             bed.id = roomBed.id;
             bed.room = roomBed.room;
+            bed.beds = roomBed.beds;
             for (let day of this.days) {
                 bed.days.push({ id: bed.id + '_' + day.getTime() });
             }
@@ -41,14 +42,18 @@ export default class BedLayoutService {
                 startDay = 0;
                 numOfNights = DateService.CalcDaysBetween(this.startDate, booking.checkout);
             }
-            for (let dayIndex = startDay; dayIndex < numOfNights + startDay; dayIndex++) {
-                if (dayIndex >= this.days.length) break;
-                while (bedIndex < beds.length && beds[bedIndex].days[dayIndex].name !== undefined) bedIndex++;
-                if (bedIndex >= beds.length || beds[bedIndex].room !== booking.room) {
-                    this.overbookings.push(booking);
-                    break;
+
+            let pax = booking.pax ? booking.pax : 1;
+            for (let i = 0; i < pax; i++) {
+                for (let dayIndex = startDay; dayIndex < numOfNights + startDay; dayIndex++) {
+                    if (dayIndex >= this.days.length) break;
+                    while (bedIndex < beds.length && beds[bedIndex].days[dayIndex].name !== undefined) bedIndex++;
+                    if (bedIndex >= beds.length || beds[bedIndex].room !== booking.room) {
+                        this.overbookings.push(booking);
+                        break;
+                    }
+                    beds[bedIndex].days[dayIndex].name = booking.name;
                 }
-                beds[bedIndex].days[dayIndex].name = booking.name;
             }
         }
         return beds;
