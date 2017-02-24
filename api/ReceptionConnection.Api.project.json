@@ -1,0 +1,8 @@
+{
+    "runtimes": {
+        "win": {}
+    },
+    "frameworks": {
+        "netcoreapp1.0": {}
+    }
+}
