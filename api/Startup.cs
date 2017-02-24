@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ReceptionConnection.Api.Controllers;
+using ReceptionConnection.Api.Services;
 
 namespace ReceptionConnection.Api
 {
@@ -29,6 +31,7 @@ namespace ReceptionConnection.Api
         {
             // Add framework services.
             services.AddMvc();
+            services.AddTransient<IMyallocatorService, MyallocatorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

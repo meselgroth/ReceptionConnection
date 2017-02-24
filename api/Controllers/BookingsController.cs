@@ -1,16 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ReceptionConnection.Api.Models;
+using ReceptionConnection.Api.Services;
 
 namespace ReceptionConnection.Api.Controllers
 {
     [Route("api/[controller]")]
     public class BookingsController : Controller
     {
-        // GET api/values
+        public IMyallocatorService _myallocatorService { get; private set; }
+
+        public BookingsController(IMyallocatorService myallocatorService)
+        {
+            _myallocatorService = myallocatorService;
+        }
+
+        [HttpGet("Repopulate")]
+        public IEnumerable<Booking> Repopulate(DateTime? startDate, DateTime? endDate)
+        {
+            startDate = startDate ?? DateTime.Today.AddMonths(-1);
+            endDate = endDate ?? DateTime.Today.AddMonths(1);
+
+            var bookings = _myallocatorService.PopulateBookings(startDate.Value, endDate.Value);
+
+            return bookings;
+        }
         [HttpGet]
         public IEnumerable<Booking> Get(DateTime? startDate, DateTime? endDate)
         {
