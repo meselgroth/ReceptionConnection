@@ -1,16 +1,16 @@
 {
   "frameworks": {
-    "netcoreapp1.0": {
+    "netcoreapp1.1": {
     }
   },
   "dependencies": {
     "Microsoft.NETCore.App": {
-      "version": "1.0.1",
+      "version": "1.1.0",
       "type": "platform"
     },
-    "Microsoft.AspNetCore": "1.0.3",
-    "Microsoft.AspNetCore.Mvc": "1.0.2",
-    "Microsoft.Extensions.Logging.Debug": "1.0.1"
+    "Microsoft.AspNetCore": "1.1.0",
+    "Microsoft.AspNetCore.Mvc": "1.1.1",
+    "Microsoft.Extensions.Logging.Debug": "1.1.0"
   },
   "buildOptions": {
     "emitEntryPoint": true,
