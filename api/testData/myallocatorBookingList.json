@@ -1,0 +1,83 @@
+﻿{
+  "end_date": "2017-12-31",
+  "query_type": "arrival",
+  "Bookings": [
+    {
+      "OrderTime": "07:28:35",
+      "Customers": [
+        {
+          "CustomerFName": "Michael",
+          "CustomerLName": "Eselgroth",
+          "CustomerNationality": "Philippines",
+          "CustomerNote": "",
+          "CustomerPhone": "9272508174",
+          "CustomerIP": "124.107.104.10",
+          "CustomerEmail": "meselgroth@yahoo.com"
+        }
+      ],
+      "Acknowledged": false,
+      "OrderDate": "2017-02-23",
+      "MyallocatorModificationDate": "2017-02-23",
+      "OrderSource": "BookNow Version 2",
+      "EndDate": "2017-02-28",
+      "OrderId": "18381-133534915-98920",
+      "IsCancellation": false,
+      "Version": 0,
+      "MyallocatorId": "b08d5f6ef99911e696decba25",
+      "TotalPrice": "12000.00",
+      "MyallocatorCreationDate": "2017-02-23",
+      "MyallocatorModificationTime": "07:28:36",
+      "PropertyId": 18381,
+      "StartDate": "2017-02-24",
+      "MyallocatorCreationTime": "07:28:36",
+      "MarkedAsRead": false,
+      "Channel": "bnw",
+      "TotalCurrency": "PHP",
+      "Rooms": [
+        {
+          "EndDate": "2017-03-28",
+          "RoomTypeIds": [
+            95159
+          ],
+          "Price": 12000,
+          "DayRates": [
+            {
+              "Currency": "PHP",
+              "Date": "2017-02-24",
+              "Rate": 2400
+            },
+            {
+              "Currency": "PHP",
+              "Date": "2017-02-25",
+              "Rate": 2400
+            },
+            {
+              "Currency": "PHP",
+              "Date": "2017-02-26",
+              "Rate": 2400
+            },
+            {
+              "Currency": "PHP",
+              "Date": "2017-02-27",
+              "Rate": 2400
+            },
+            {
+              "Currency": "PHP",
+              "Date": "2017-02-28",
+              "Rate": 2400
+            }
+          ],
+          "RateId": "",
+          "RateDesc": "",
+          "Currency": "PHP",
+          "Units": 4,
+          "StartDate": "2017-02-25",
+          "MyallocatorRateplanIds": [],
+          "ChannelRoomType": "95159"
+        }
+      ]
+    }
+  ],
+  "start_date": "2017-01-01",
+  "Success": true
+}

@@ -9,15 +9,15 @@ namespace ReceptionConnection.Api.Controllers
     [Route("api/[controller]")]
     public class BookingsController : Controller
     {
-        public IMyallocatorService _myallocatorService { get; private set; }
+        private readonly IMyallocatorService _myallocatorService;
 
         public BookingsController(IMyallocatorService myallocatorService)
         {
             _myallocatorService = myallocatorService;
         }
 
-        [HttpGet("Repopulate")]
-        public IEnumerable<Booking> Repopulate(DateTime? startDate, DateTime? endDate)
+        [HttpGet("InitialLoad")]
+        public IEnumerable<Booking> InitialLoad(DateTime? startDate, DateTime? endDate)
         {
             startDate = startDate ?? DateTime.Today.AddMonths(-1);
             endDate = endDate ?? DateTime.Today.AddMonths(1);
