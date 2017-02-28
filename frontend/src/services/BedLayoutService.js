@@ -21,7 +21,9 @@ export default class BedLayoutService {
             let bed = { days: [] };
             bed.id = roomBed.id;
             bed.room = roomBed.room;
-            bed.beds = roomBed.beds;
+            // todo, remove unnecessary
+            bed.roomId = roomBed.room.id;
+            bed.beds = roomBed.room.bedCount;
             for (let day of this.days) {
                 bed.days.push({ id: bed.id + '_' + day.getTime() });
             }
@@ -29,7 +31,7 @@ export default class BedLayoutService {
         }
         for (let booking of bookings) {
             let bedIndex = 0;
-            while (bedIndex < beds.length && beds[bedIndex].room !== booking.room) {
+            while (bedIndex < beds.length && beds[bedIndex].roomId !== booking.roomId) {
                 bedIndex++;
             }
             if (bedIndex >= beds.length) {
@@ -48,7 +50,7 @@ export default class BedLayoutService {
                 for (let dayIndex = startDay; dayIndex < numOfNights + startDay; dayIndex++) {
                     if (dayIndex >= this.days.length) break;
                     while (bedIndex < beds.length && beds[bedIndex].days[dayIndex].name !== undefined) bedIndex++;
-                    if (bedIndex >= beds.length || beds[bedIndex].room !== booking.room) {
+                    if (bedIndex >= beds.length || beds[bedIndex].roomId !== booking.roomId) {
                         this.overbookings.push(booking);
                         break;
                     }
@@ -61,7 +63,7 @@ export default class BedLayoutService {
     MakeOverbookingsLayout() {
         let roomBeds = [];
         for (let overbooking of this.overbookings) {
-            roomBeds.push({ id: overbooking.id, room: overbooking.room });
+            roomBeds.push({ id: overbooking.id, roomId: overbooking.roomId });
         }
         return this.MakeLayout(this.overbookings, roomBeds);
     }

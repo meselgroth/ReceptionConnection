@@ -1,21 +1,37 @@
+class FakePromise {
+    constructor(repo) {
+        this.repo = repo;
+    }
+    then(updateComponent) {
+        this.repo.updateComponent = updateComponent;
+        updateComponent(this.repo.bookings);
+    }
+}
 
 export default class BookingRepo {
-    constructor(){
-        this.bookings = [{id:0,room:'6 Bed',name:'John',checkin:new Date('2/14/2017'),checkout:new Date('2/16/2018')},
-        {id:0,room:'6 Bed',name:'Jay',checkin:new Date('2/14/2017'),checkout:new Date('2/16/2018')},
-        {id:0,room:'6 Bed',name:'Bob',checkin:new Date('2/14/2017'),checkout:new Date('2/16/2018')}];
+    constructor() {
+        this.bookings = [];
+        this.updateComponent = () => { console.log('updateComponent not set') };
     }
-    Add(booking){
+    AddBookings(bookings) {
+        for (let booking of bookings) {
+            this.bookings.push(booking);
+        }
+        this.updateComponent(this.bookings);
+    }
+    Add(booking) {
         this.bookings.push(booking);
-
+        this.updateComponent(this.bookings);
     }
-    Update(booking){
-
+    Update(booking) {
+        console.log('not implemented');
     }
-    Exists(){
+    GetBookings(startDate, endDate) {
+        let promise = new FakePromise(this);
+        return promise;
+    }
+    Exists() {
+        console.log('not implemented');
         return false;
-    }
-    Refresh(){
-
     }
 }

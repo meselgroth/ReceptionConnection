@@ -8,7 +8,7 @@ import { Table } from 'react-bootstrap';
 export default class AvailabilityTable extends Component {
     constructor({startDate, endDate, bookingService, roomRepo}) {
         super(arguments[0]);
-        this.state = { beds: [{ id: 0, days: [] }], days: [], overbookingBeds: [] };
+        this.state = { beds: [], days: [], overbookingBeds: [] };
         this.bookingService = bookingService;
         this.roomRepo = roomRepo;
 
@@ -18,7 +18,7 @@ export default class AvailabilityTable extends Component {
     }
     componentDidMount() {
         this.roomBeds = this.roomRepo.GetRoomBeds();
-        this.bookingService.GetBookings(this.startDate, this.endDate)
+        this.bookingService.GetBookings(this.startDate, this.endDate, this.makeLayout)
             .then(data => this.makeLayout(data));
     }
     makeLayout(bookings) {
@@ -32,7 +32,7 @@ export default class AvailabilityTable extends Component {
         let titleRow = false;
         let alternate = true;
         let availRows = this.state.beds.map((b) => {
-            titleRow = b.room !== room;
+            titleRow = b.room.id !== room.id;
             room = b.room;
             if (titleRow) { alternate = !alternate; }
             return <AvailabilityRow key={b.id} bed={b} titleRow={titleRow} alternate={alternate} />
