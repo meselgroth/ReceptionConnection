@@ -21,6 +21,12 @@ namespace ReceptionConnection.Api
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
+            if (env.IsDevelopment())
+            {
+                builder.AddUserSecrets();
+            }
+
             Configuration = builder.Build();
         }
 
@@ -32,6 +38,7 @@ namespace ReceptionConnection.Api
             // Add framework services.
             services.AddMvc();
             services.AddTransient<IMyallocatorService, MyallocatorService>();
+            services.Configure<AppSettings>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,5 +49,14 @@ namespace ReceptionConnection.Api
 
             app.UseMvc();
         }
+    }
+
+    public class AppSettings
+    {
+        public string VendorPassword { get; set; }
+        public string VendorId { get; set; }
+        public string UserPassword { get; set; }
+        public string UserId { get; set; }
+        public string PropertyId { get; set; }
     }
 }

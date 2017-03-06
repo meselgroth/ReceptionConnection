@@ -951,6 +951,19 @@
           "lib/netstandard1.3/Microsoft.Extensions.Configuration.Json.dll": {}
         }
       },
+      "Microsoft.Extensions.Configuration.UserSecrets/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Json": "1.1.0",
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.5/Microsoft.Extensions.Configuration.UserSecrets.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/Microsoft.Extensions.Configuration.UserSecrets.dll": {}
+        }
+      },
       "Microsoft.Extensions.DependencyInjection/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -4256,6 +4269,20 @@
         "lib/netstandard1.3/Microsoft.Extensions.Configuration.Json.xml",
         "microsoft.extensions.configuration.json.1.1.0.nupkg.sha512",
         "microsoft.extensions.configuration.json.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Configuration.UserSecrets/1.1.0": {
+      "sha512": "i3gPxRSGOUa7WN1KBm+34MigUmlKDpySB7Nl2xc/QxvOO0YFgaszLywtbTW8CIyKFNEDmxsyMHN/Dsck8m6qSg==",
+      "type": "package",
+      "path": "Microsoft.Extensions.Configuration.UserSecrets/1.1.0",
+      "files": [
+        "build/netstandard1.0/Microsoft.Extensions.Configuration.UserSecrets.targets",
+        "lib/net451/Microsoft.Extensions.Configuration.UserSecrets.dll",
+        "lib/net451/Microsoft.Extensions.Configuration.UserSecrets.xml",
+        "lib/netstandard1.5/Microsoft.Extensions.Configuration.UserSecrets.dll",
+        "lib/netstandard1.5/Microsoft.Extensions.Configuration.UserSecrets.xml",
+        "microsoft.extensions.configuration.usersecrets.1.1.0.nupkg.sha512",
+        "microsoft.extensions.configuration.usersecrets.nuspec"
       ]
     },
     "Microsoft.Extensions.DependencyInjection/1.1.0": {
@@ -9532,11 +9559,54 @@
     "": [
       "Microsoft.AspNetCore >= 1.1.0",
       "Microsoft.AspNetCore.Mvc >= 1.1.1",
+      "Microsoft.Extensions.Configuration.Json >= 1.1.0",
+      "Microsoft.Extensions.Configuration.UserSecrets >= 1.1.0",
       "Microsoft.Extensions.Logging.Debug >= 1.1.0",
       "Microsoft.NETCore.App >= 1.1.0"
     ],
     ".NETCoreApp,Version=v1.1": []
   },
-  "tools": {},
-  "projectFileToolGroups": {}
+  "tools": {
+    ".NETCoreApp,Version=v1.0": {
+      "Microsoft.Extensions.SecretManager.Tools/1.1.0-preview4-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.CommandLineUtils": "1.1.0",
+          "Microsoft.Extensions.Configuration.UserSecrets": "1.1.0",
+          "Microsoft.Extensions.Logging": "1.1.0",
+          "Microsoft.NETCore.App": "1.1.0",
+          "Newtonsoft.Json": "9.0.1",
+          "System.Runtime.Serialization.Primitives": "4.3.0"
+        },
+        "compile": {
+          "lib/netcoreapp1.0/dotnet-user-secrets.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/dotnet-user-secrets.dll": {}
+        }
+      },
+      "Microsoft.DotNet.Watcher.Tools/1.1.0-preview4-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.DotNet.Cli.Utils": "1.0.0-preview2-003121",
+          "Microsoft.Extensions.CommandLineUtils": "1.1.0",
+          "Microsoft.Extensions.Logging": "1.1.0",
+          "Microsoft.Extensions.Logging.Console": "1.1.0",
+          "Microsoft.NETCore.App": "1.1.0"
+        },
+        "compile": {
+          "lib/netcoreapp1.0/dotnet-watch.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/dotnet-watch.dll": {}
+        }
+      }
+    }
+  },
+  "projectFileToolGroups": {
+    ".NETCoreApp,Version=v1.0": [
+      "Microsoft.DotNet.Watcher.Tools >= 1.1.0-preview4-final",
+      "Microsoft.Extensions.SecretManager.Tools >= 1.1.0-preview4-final"
+    ]
+  }
 }
