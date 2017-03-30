@@ -8,7 +8,7 @@ export default class AvailabilityCell extends Component {
         } else {
             classes = 'border';
         }
-        classes += this.props.alternate && classes!=='avail-booking' ? ' stripe' :'';
+        classes += this.props.isAlternate && classes!=='avail-booking' ? ' stripe' :'';
         return classes;
     }
     render() {

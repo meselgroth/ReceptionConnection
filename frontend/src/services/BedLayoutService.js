@@ -6,7 +6,7 @@ export default class BedLayoutService {
         this.endDate = endDate;
 
         this.days = DateService.MakeDays(startDate, endDate);
-        this.errors = '';
+        this.errors = [];
         this.overbookings = [];
     }
 
@@ -35,7 +35,7 @@ export default class BedLayoutService {
                 bedIndex++;
             }
             if (bedIndex >= beds.length) {
-                this.errors += 'Bad booking, unrecognised room: ' + booking.name + '\n';
+                this.errors.push('Bad booking, unrecognised room: ' + booking.name);
                 continue;
             }
             let startDay = DateService.CalcDaysBetween(this.startDate, booking.checkin);

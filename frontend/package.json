@@ -43,6 +43,7 @@
     "promise": "7.1.1",
     "react-dev-utils": "^0.5.0",
     "recursive-readdir": "2.1.0",
+    "redux-devtools": "^3.3.2",
     "strip-ansi": "3.0.1",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
@@ -53,9 +54,12 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "pouchdb-browser": "^6.1.2",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0"
   },
   "scripts": {
     "start": "node scripts/start.js",

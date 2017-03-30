@@ -8,7 +8,7 @@ export default class BookingPage extends Component {
         this.state = { checkin: DateService.CurrentDateInputFormat(), checkout: DateService.TomorrowInputFormat(), name: '', room: '', pax: 1 };
         this.routeService = props.route.routeService;
         this.bookingService = props.route.bookingService;
-        this.rooms = props.route.roomRepo.GetRoomNames();
+        this.rooms = props.route.roomRepo.GetRooms();
     }
 
     handleChange = (event) => {
@@ -19,7 +19,7 @@ export default class BookingPage extends Component {
         this.bookingService.Save(this.state);
     }
     render() {
-        let roomOptions = this.rooms.map(r => <option key={r} value={r}>{r}</option>);
+        let roomOptions = this.rooms.map(r => <option key={r.id} value={r.id}>{r.name}</option>);
         return (
             <div><h1>New Booking</h1>
                 <p>Enter details</p>
@@ -46,10 +46,10 @@ export default class BookingPage extends Component {
                     </div>
 
                     <div className='form-group row'>
-                        <label htmlFor='room' className='col-sm-2'>Room
+                        <label htmlFor='roomId' className='col-sm-2'>Room
                         </label>
                         <div className='col-sm-10'>
-                            <select id="room" value={this.state.room} onChange={this.handleChange} className="form-control" required >
+                            <select id="roomId" value={this.state.roomId} onChange={this.handleChange} className="form-control" required >
                                 <option></option>
                                 {roomOptions}
                             </select>

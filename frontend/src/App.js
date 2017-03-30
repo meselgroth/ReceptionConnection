@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import AvailabilityTable from './AvailabilityTable';
+import AvailabilityTableContainer from './AvailabilityTableContainer';
 import {Button} from 'react-bootstrap';
 import './App.css';
 
@@ -14,7 +14,7 @@ export default class App extends Component {
     return (
       <div>
           <h1>Chill Out Room Layout<Link to="/booking" className='pull-right'><Button bsStyle="primary">Add Booking</Button></Link></h1>
-        <AvailabilityTable bookingService={this.bookingService} roomRepo={this.roomRepo} />
+        <AvailabilityTableContainer bookingService={this.bookingService} roomRepo={this.roomRepo} />
         
       </div>
     );

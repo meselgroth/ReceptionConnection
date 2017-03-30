@@ -22,7 +22,7 @@ namespace ReceptionConnection.Api.Services
         {
             var httpClient = new HttpClient();
             //const string myallocatorApi = "http://api.myallocator.com/pms/v201408/json";
-            const string myallocatorApi = "http://localhost.:5000/api";
+            const string myallocatorApi = "http://localhost:5000/api";
 
             var bodyDictionary = new Dictionary<string, string> {
                 //TODO:mce switch to token

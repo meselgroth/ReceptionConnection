@@ -1,72 +1,65 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './AvailabilityTable.css';
 import AvailabilityRow from './AvailabilityRow';
-import BedLayoutService from './services/BedLayoutService';
 import DateService from './services/DateService';
 import { Table } from 'react-bootstrap';
 
-export default class AvailabilityTable extends Component {
-    constructor({startDate, endDate, bookingService, roomRepo}) {
-        super(arguments[0]);
-        this.state = { beds: [], days: [], overbookingBeds: [] };
-        this.bookingService = bookingService;
-        this.roomRepo = roomRepo;
+export default function AvailabilityTable(props) {
+    let room = '';
+    let titleRow = false;
+    let isAlternate = true;
+    let availRows = props.beds.map((b) => {
+        titleRow = b.room.id !== room.id;
+        room = b.room;
+        if (titleRow) { isAlternate = !isAlternate; }
+        return <AvailabilityRow key={b.id} bed={b} titleRow={titleRow} isAlternate={isAlternate} />
+    });
 
-        this.startDate = startDate ? startDate : DateService.CurrentDate();
-        this.endDate = endDate ? endDate : new Date(this.startDate.getFullYear(), this.startDate.getMonth() + 1, this.startDate.getDate());
-        this.bedLayoutService = new BedLayoutService(this.startDate, this.endDate);
-    }
-    componentDidMount() {
-        this.roomBeds = this.roomRepo.GetRoomBeds();
-        this.bookingService.GetBookings(this.startDate, this.endDate, this.makeLayout)
-            .then(data => this.makeLayout(data));
-    }
-    makeLayout(bookings) {
-        let days = this.bedLayoutService.Days;
-        let beds = this.bedLayoutService.MakeLayout(bookings, this.roomBeds);
-        let overbookingBeds = this.bedLayoutService.MakeOverbookingsLayout();
-        this.setState({ beds, days, overbookingBeds });
-    }
-    render() {
-        let room = '';
-        let titleRow = false;
-        let alternate = true;
-        let availRows = this.state.beds.map((b) => {
-            titleRow = b.room.id !== room.id;
-            room = b.room;
-            if (titleRow) { alternate = !alternate; }
-            return <AvailabilityRow key={b.id} bed={b} titleRow={titleRow} alternate={alternate} />
-        });
-        let overBookingRows = this.state.overbookingBeds.map((b) => (
-            <AvailabilityRow key={b.id} bed={b} />
-        ));
-        let overBookings = this.state.overbookingBeds.map((b) => (
-            <tbody key='overbookings'>
+    let dayHeaders = props.days.map((d) => (
+        <th key={d.getTime()}>{DateService.DayMonth(d)}</th>
+    ));
+
+    return (
+        <Table condensed hover>
+            <thead>
                 <tr>
-                    <th>OverBookings</th>
+                    <th>Room</th>
+                    {dayHeaders}
                 </tr>
-                {overBookingRows}
+            </thead>
+            <tbody>
+                {availRows}
             </tbody>
-        ));
-        let dayHeaders = this.state.days.map((d) => (
-            <th key={d.getTime()}>{DateService.DayMonth(d)}</th>
-        ));
-        return (
-            <Table condensed hover>
-                <thead>
-                    <tr>
-                        <th>Room</th>
-                        {dayHeaders}
-                    </tr>
-                </thead>
-                <tbody>
-                    {availRows}
-                </tbody>
-                {overBookings}
-                <tfoot>
-                    {this.bedLayoutService.errors}
-                </tfoot>
-            </Table>
+            <OverBookings overbookingBeds={props.overbookingBeds} />
+            <ErrorBookings errors={props.errors} />
+        </Table>
+    );
+}
+
+// Are these subcomponents overkill?
+function OverBookings(props) {
+    let overBookingRows = props.overbookingBeds.map((b) => (
+        <AvailabilityRow key={b.id} bed={b} />
+    ));
+
+    return (
+        <tbody key='overbookings'>
+            <tr>
+                <th>OverBookings</th>
+            </tr>
+            {overBookingRows}
+        </tbody>
+    );
+}
+
+function ErrorBookings(props) {
+    let errorBookings = [];
+
+    for (let i = 0; i < props.errors.length; i++) {
+        let e = props.errors;
+        errorBookings.push(
+            <tr key={i}><td colSpan={props.days.length + 1}>{e}</td></tr>
         );
     }
+    return <tfoot>{errorBookings}</tfoot>;
 }

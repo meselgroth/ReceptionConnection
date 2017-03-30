@@ -19,16 +19,14 @@ export default class BookingService {
         else {
             this.bookingRepo.Add(booking);
         }
-        this.bookingRepo.Refresh();
     }
-    GetBookings(startDate, endDate, updateComponent) {
-        this.getBookingsPromise = this.bookingRepo.GetBookings(startDate, endDate, updateComponent)
+    GetBookings(startDate, endDate) {
+        this.getBookingsPromise = this.bookingRepo.GetBookings(startDate, endDate)
         return this.getBookingsPromise;
     }
 
     InitialLoad() {
         var newArrivalsFetch = fetch('/api/Bookings/InitialLoad', { headers: this.headers });
-        //fetch('/api/Bookings/',{headers:this.headers});
         newArrivalsFetch.then(response => response.json())  // handle response errors like not logged in
             .then(bookings => this.bookingRepo.AddBookings(bookings));
     }
@@ -37,5 +35,8 @@ export default class BookingService {
     }
     HandelFetchError(err) {
         console.log(err);
+    }
+    SetObserver(observer){
+        this.bookingRepo.SetObserver(observer);
     }
 }
