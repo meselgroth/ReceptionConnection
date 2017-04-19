@@ -1,17 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, HashRouter as Router } from 'react-router-dom';
-import thunkMiddleware from 'redux-thunk';
-import { createLogger } from 'redux-logger';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import { syncHistoryWithStore } from 'react-router-redux';
 
+import configureStore from './store/configureStore';
 
-import rootReducer from './store/reducers';
 import initialLoad from './store/actions';
-
 import App from './App';
 import DeleteDbContainer from './DeleteDbContainer';
 import BookingPage from './BookingPage';
@@ -19,9 +15,8 @@ import { } from 'bootstrap/dist/css/bootstrap.css';
 import { } from 'bootstrap/dist/css/bootstrap-theme.css';
 import './index.css';
 
-const loggerMiddleware = createLogger();
 
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, loggerMiddleware));
+const store = configureStore();
 // const history = syncHistoryWithStore(browserHistory, store);
 
 store.dispatch(initialLoad());

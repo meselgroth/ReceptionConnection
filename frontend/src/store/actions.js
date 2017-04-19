@@ -1,23 +1,33 @@
+import fetch from 'isomorphic-fetch';
+
 import RoomRepo from '../services/RoomRepo';
+import * as types from './actionTypes';
 
 export default function initialLoad() {
-    return function (dispatch) {
+    return function (dispatch, getState) {
         dispatch(receiveRoomBeds(new RoomRepo().GetRoomBeds()));
-        
-        var newArrivalsFetch = fetch('/api/Bookings/InitialLoad', { headers: {} });
-        newArrivalsFetch.then(response => response.json())  // handle response errors like not logged in
-            .then(json => dispatch(receiveBookings(json)));
-        
+
+        if (getState.initialLoadComplete) {
+            //data comes from database
+            // call upload
+        }
+        else {
+            var newArrivalsFetch = fetch('/api/Bookings/InitialLoad', { headers: {} });
+            newArrivalsFetch.then(response => response.json())  // handle response errors like not logged in
+                .then(json => dispatch(receiveBookings(json)));
+            return newArrivalsFetch;
+        }
     }
 }
 
- function receiveRoomBeds(json) {
+function receiveRoomBeds(json) {
     return {
-        type: 'receive_roomBeds', roomBeds: json
+        type: types.RECEIVE_ROOMBEDS, roomBeds: json
     }
 }
+
 export function receiveBookings(json) {
     return {
-        type: 'receive_bookings', bookings: json
+        type: types.RECEIVE_BOOKINGS, bookings: json
     }
 }
