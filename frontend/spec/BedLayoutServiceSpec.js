@@ -2,7 +2,7 @@ import BedLayoutService from '../src/services/BedLayoutService';
 
 describe("BedLayoutService", () => {
   let bedLayoutService = new BedLayoutService(new Date(2017, 1, 1), new Date(2017, 2, 1));
-  let roomBeds = [{ id: 0 }, { id: 1, room: 'Fan' }, { id: 2, room: 'Fan' }, { id: 3, room: '8 Bed' }];
+  let roomBeds = [{ id: 0, room:{id:undefined, name: 'a'}} , { id: 1, room:{id:0, name: 'Fan'} }, { id: 2, room:{id:0, name: 'Fan'} }, { id: 3, room:{id:1, name:  '8 Bed'} }];
   let bookings = [];
 
   it("Constructor creates days array", () => {
@@ -16,7 +16,7 @@ describe("BedLayoutService", () => {
 
     expect(beds.length).toBe(4);
     expect(beds[0].days.length).toBe(28);
-    expect(beds[1].room).toBe('Fan');
+    expect(beds[1].room.name).toBe('Fan');
   });
 
   it("MakeLayout puts booking in correct days", () => {
@@ -30,7 +30,7 @@ describe("BedLayoutService", () => {
   });
 
   it("MakeLayout puts 2 pax booking in correct days", () => {
-    bookings = [{ name: 'james', checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4), room: 'Fan', pax: 2 }];
+    bookings = [{ name: 'james', checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4), roomId: 0, pax: 2 }];
     let beds = bedLayoutService.MakeLayout(bookings, roomBeds);
 
     expect(beds[1].days[1].name).toBe('james');
@@ -56,7 +56,7 @@ describe("BedLayoutService", () => {
   });
 
   it("MakeLayout puts booking in correct room", () => {
-    bookings = [{ name: 'james', room: '8 Bed', checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) }];
+    bookings = [{ name: 'james', roomId: 1, checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) }];
     let beds = bedLayoutService.MakeLayout(bookings, roomBeds);
 
     expect(beds[0].days[1].name).toBeUndefined();
@@ -68,16 +68,16 @@ describe("BedLayoutService", () => {
   });
 
   it("MakeLayout unrecognised room added to errors string", () => {
-    bookings = [{ name: 'james', room: 'xxx', checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) }];
+    bookings = [{ name: 'james', roomId: 999, checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) }];
     let beds = bedLayoutService.MakeLayout(bookings, roomBeds);
 
     expect(beds[0].days[1].name).toBeUndefined();
     expect(beds[3].days[1].name).toBeUndefined();
-    expect(bedLayoutService.errors).toBe('Bad booking, unrecognised room: james\n');
+    expect(bedLayoutService.errors[0]).toBe('Bad booking, unrecognised room: james');
   });
   it("MakeLayout puts 2nd booking in empty bed", () => {
-    bookings = [{ name: 'james', room: 'Fan', checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) },
-    { name: 'bob', room: 'Fan', checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) }];
+    bookings = [{ name: 'james', roomId: 0, checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) },
+    { name: 'bob', roomId: 0, checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) }];
     let beds = bedLayoutService.MakeLayout(bookings, roomBeds);
 
     expect(beds[0].days[1].name).toBeUndefined();
@@ -92,9 +92,9 @@ describe("BedLayoutService", () => {
     expect(beds[2].days[3].name).toBeUndefined();
   });
   it("MakeLayout puts 3rd booking in empty bed", () => {
-    bookings = [{ name: 'james', room: 'Fan', checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) },
-    { name: 'bob', room: 'Fan', checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) },
-    { name: 'jay', room: 'Fan', checkin: new Date(2017, 1, 4), checkout: new Date(2017, 1, 7) }];
+    bookings = [{ name: 'james', roomId: 0, checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) },
+    { name: 'bob', roomId: 0, checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) },
+    { name: 'jay', roomId: 0, checkin: new Date(2017, 1, 4), checkout: new Date(2017, 1, 7) }];
     let beds = bedLayoutService.MakeLayout(bookings, roomBeds);
 
     expect(beds[1].days[1].name).toBe('james');
@@ -107,11 +107,11 @@ describe("BedLayoutService", () => {
   });
 
   it("MakeLayout puts 4th and 5th booking in empty bed", () => {
-    bookings = [{ name: 'james', room: 'Fan', checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) },
-    { name: 'bob', room: 'Fan', checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) },
-    { name: 'dan', room: 'Fan', checkin: new Date(2017, 1, 4), checkout: new Date(2017, 1, 6) },
-    { name: 'dude', room: 'Fan', checkin: new Date(2017, 1, 4), checkout: new Date(2017, 1, 5) },
-    { name: 'jay', room: 'Fan', checkin: new Date(2017, 1, 5), checkout: new Date(2017, 1, 7) }]
+    bookings = [{ name: 'james', roomId: 0, checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) },
+    { name: 'bob', roomId: 0, checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4) },
+    { name: 'dan', roomId: 0, checkin: new Date(2017, 1, 4), checkout: new Date(2017, 1, 6) },
+    { name: 'dude', roomId: 0, checkin: new Date(2017, 1, 4), checkout: new Date(2017, 1, 5) },
+    { name: 'jay', roomId: 0, checkin: new Date(2017, 1, 5), checkout: new Date(2017, 1, 7) }]
     // james | james | dan   | dan | 
     // bob   | bob   | dude  | jay | jay
     let beds = bedLayoutService.MakeLayout(bookings, roomBeds);

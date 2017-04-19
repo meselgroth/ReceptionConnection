@@ -36,8 +36,9 @@ export default function AvailabilityTable(props) {
     );
 }
 
-// Are these subcomponents overkill?
 function OverBookings(props) {
+    if (props.overbookingBeds.length===0) return null;
+
     let overBookingRows = props.overbookingBeds.map((b) => (
         <AvailabilityRow key={b.id} bed={b} />
     ));

@@ -1,7 +1,7 @@
 export default class BookingService {
-    constructor(bookingRepo) {
+    constructor(bookingRepo, store) {
         this.bookingRepo = bookingRepo;
-
+        this.store = store;
 
         //Load bookings from indexeddb
         //If empty or very old
@@ -36,7 +36,7 @@ export default class BookingService {
     HandelFetchError(err) {
         console.log(err);
     }
-    SetObserver(observer){
+    SetObserver(observer) {
         this.bookingRepo.SetObserver(observer);
     }
 }

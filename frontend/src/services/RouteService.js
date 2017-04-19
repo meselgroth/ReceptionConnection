@@ -1,7 +1,7 @@
-import { hashHistory } from 'react-router';
+import { hashHistory as history } from 'react-router';
 
 export default class RouteService {
     routeToHome() {
-        hashHistory.push('/')
+        history.push('/')
     }
 }
