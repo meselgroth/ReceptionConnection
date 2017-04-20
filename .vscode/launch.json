@@ -1,6 +1,20 @@
 {
     "version": "0.2.0",
-    "configurations": [
+    "configurations": [        
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceRoot}"
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach to Process",
+            "processId": "${command:PickProcess}",
+            "port": 5858
+        },
         {
             "name": ".NET Core Launch (web)",
             "type": "coreclr",

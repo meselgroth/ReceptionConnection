@@ -25,6 +25,7 @@
     "eslint-plugin-jsx-a11y": "2.2.3",
     "eslint-plugin-react": "6.4.1",
     "extract-text-webpack-plugin": "1.0.1",
+    "fetch-mock": "^5.10.0",
     "file-loader": "0.10.0",
     "filesize": "3.3.0",
     "fs-extra": "0.30.0",
@@ -33,7 +34,7 @@
     "http-proxy-middleware": "0.17.3",
     "jasmine": "^2.5.3",
     "jasmine-core": "^2.5.2",
-    "jest": "18.1.0",
+    "jest": "19.0.2",
     "json-loader": "0.5.4",
     "karma": "^1.4.1",
     "karma-chrome-launcher": "^2.0.0",
@@ -81,7 +82,6 @@
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
-    "testEnvironment": "node",
     "testURL": "http://localhost",
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",

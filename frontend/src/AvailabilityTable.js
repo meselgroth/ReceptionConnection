@@ -31,7 +31,7 @@ export default function AvailabilityTable(props) {
                 {availRows}
             </tbody>
             <OverBookings overbookingBeds={props.overbookingBeds} />
-            <ErrorBookings errors={props.errors} />
+            <ErrorBookings errors={props.errors} days={props.days} />
         </Table>
     );
 }
