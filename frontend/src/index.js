@@ -7,7 +7,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 import configureStore from './store/configureStore';
 
-import initialLoad from './store/actions';
 import App from './App';
 import DeleteDbContainer from './DeleteDbContainer';
 import BookingPage from './BookingPage';
@@ -19,8 +18,7 @@ import './index.css';
 const store = configureStore();
 // const history = syncHistoryWithStore(browserHistory, store);
 
-store.dispatch(initialLoad());
-
+ 
 ReactDOM.render(
   <Provider store={store}>
     <Router>

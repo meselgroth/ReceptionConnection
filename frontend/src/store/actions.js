@@ -5,7 +5,7 @@ export default function initialLoad() {
     return function (dispatch, getState) {
         dispatch(receiveRoomBeds(new RoomRepo().GetRoomBeds()));
 
-        if (getState.initialLoadComplete) {
+        if (getState().bookings.length>0) {
             //data comes from database
             // call upload
         }
