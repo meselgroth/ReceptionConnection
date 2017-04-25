@@ -11,5 +11,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 function DeleteDbComponent() {
-  return <div>database deleted</div>
+  return <div>database deleted</div>;
 }

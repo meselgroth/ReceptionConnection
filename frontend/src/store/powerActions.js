@@ -6,5 +6,5 @@ export default function DeleteDb() {
         let db = new PouchDB('receptionDb');
         db.destroy();
         dispatch(receiveBookings(null));
-    }
+    };
 }

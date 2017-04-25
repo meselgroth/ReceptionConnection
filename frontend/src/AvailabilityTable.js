@@ -12,7 +12,7 @@ export default function AvailabilityTable(props) {
         titleRow = b.room.id !== room.id;
         room = b.room;
         if (titleRow) { isAlternate = !isAlternate; }
-        return <AvailabilityRow key={b.id} bed={b} titleRow={titleRow} isAlternate={isAlternate} />
+        return <AvailabilityRow key={b.id} bed={b} titleRow={titleRow} isAlternate={isAlternate} />;
     });
 
     let dayHeaders = props.days.map((d) => (

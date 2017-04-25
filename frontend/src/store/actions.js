@@ -14,18 +14,18 @@ export default function initialLoad() {
             .then(response=>response.json())  // handle response errors like not logged in
             .then(json => dispatch(receiveBookings(json)));
         }
-    }
+    };
 }
 
 export function receiveBookings(body) {
     return {
         type: types.RECEIVE_BOOKINGS, bookings: body
-    }
+    };
 }
 
 function receiveRoomBeds(json) {
     return {
         type: types.RECEIVE_ROOMBEDS, roomBeds: json
-    }
+    };
 }
 
