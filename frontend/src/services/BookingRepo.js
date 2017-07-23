@@ -10,7 +10,7 @@ export default class BookingRepo {
         });
 
         this.bookings = [];
-        this.updateComponent = () => { console.log('updateComponent not set') };
+        this.updateComponent = () => console.log('updateComponent not set');
     }
     AddBookings(bookings) {
         for (let booking of bookings) {

@@ -25,6 +25,10 @@ function bookings(state = [], action) {
     if (action.type === types.RECEIVE_BOOKINGS) {
         return action.bookings;
     }
+        if (action.type === types.ADD_BOOKING) {
+        return [...state, action.booking];
+    }
+    
     return state;
 }
 

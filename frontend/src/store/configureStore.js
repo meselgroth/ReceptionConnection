@@ -6,28 +6,43 @@ import PouchDB from 'pouchdb-browser';
 import rootReducer from './reducers';
 import initialLoad from './actions';
 
-const loggerMiddleware = createLogger();
-const db = new PouchDB('receptionDb');
-let store = null;
-let unsubscribeInitialiser = null;
 
-export default function configureStore() {
-    let pouchDbStoreCreator = persistentStore(db);
-    let composer = compose(
-        applyMiddleware(thunkMiddleware, loggerMiddleware),
-        pouchDbStoreCreator
-    );
-    let composedMiddleware = composer(createStore);
-    store = composedMiddleware(rootReducer, initialState);
+export default class ConfigureStore {
+    constructor() {
+        const middlewares = [thunkMiddleware];
 
-    unsubscribeInitialiser = store.subscribe(subscriber);
+        if (process.env.NODE_ENV === `development`) {
+            middlewares.push(createLogger());
+        }
 
-    return store;
-    // return createStore(rootReducer, applyMiddleware(thunkMiddleware, loggerMiddleware));
-}
-function subscriber() {
-    if(store.getState().dbInitComplete){
-        store.dispatch(initialLoad());
-        unsubscribeInitialiser();
+        this._db = new PouchDB('receptionDb');
+
+        let pouchDbStoreCreator = persistentStore(this._db);
+        let composer = compose(
+            applyMiddleware(...middlewares),
+            pouchDbStoreCreator
+        );
+        let composedMiddleware = composer(createStore);
+
+        this._store = composedMiddleware(rootReducer, initialState);
+
+        this._configure = new Promise((resolve, reject) => this._resolve = resolve);
+        this.unsubscribeInitialiser = this._store.subscribe(this.subscriber.bind(this));
+    }
+    get store() {
+        return this._store;
+    }
+    get configure() {
+        return this._configure;
+    }
+    get db() {
+        return this._db;
+    }
+    subscriber() {
+        if (this._store.getState().dbInitComplete) {
+            this.unsubscribeInitialiser();
+            this._store.dispatch(initialLoad())
+                .then(() => this._resolve());
+        }
     }
 }
