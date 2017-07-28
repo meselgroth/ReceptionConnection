@@ -47,17 +47,8 @@ namespace ReceptionConnection.Api
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseStaticFiles();
             app.UseMvc();
         }
-    }
-
-    public class AppSettings
-    {
-        public string VendorPassword { get; set; }
-        public string VendorId { get; set; }
-        public string UserPassword { get; set; }
-        public string UserId { get; set; }
-        public string PropertyId { get; set; }
-        public string Myallocator { get; set; }
     }
 }
