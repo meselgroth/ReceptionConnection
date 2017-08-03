@@ -16,26 +16,26 @@
         }
       ],
       "Acknowledged": false,
-      "OrderDate": "2017-04-23",
-      "MyallocatorModificationDate": "2017-04-23",
+      "OrderDate": "2017-08-23",
+      "MyallocatorModificationDate": "2017-08-23",
       "OrderSource": "BookNow Version 2",
-      "EndDate": "2017-04-28",
+      "EndDate": "2017-08-28",
       "OrderId": "18381-133534915-98920",
       "IsCancellation": false,
       "Version": 0,
       "MyallocatorId": "b08d5f6ef99911e696decba25",
       "TotalPrice": "12000.00",
-      "MyallocatorCreationDate": "2017-04-23",
+      "MyallocatorCreationDate": "2017-08-23",
       "MyallocatorModificationTime": "07:28:36",
       "PropertyId": 18381,
-      "StartDate": "2017-04-24",
+      "StartDate": "2017-08-24",
       "MyallocatorCreationTime": "07:28:36",
       "MarkedAsRead": false,
       "Channel": "bnw",
       "TotalCurrency": "PHP",
       "Rooms": [
         {
-          "EndDate": "2017-03-28",
+          "EndDate": "2017-08-28",
           "RoomTypeIds": [
             95159
           ],
@@ -43,27 +43,27 @@
           "DayRates": [
             {
               "Currency": "PHP",
-              "Date": "2017-04-24",
+              "Date": "2017-08-24",
               "Rate": 2400
             },
             {
               "Currency": "PHP",
-              "Date": "2017-04-25",
+              "Date": "2017-08-25",
               "Rate": 2400
             },
             {
               "Currency": "PHP",
-              "Date": "2017-04-26",
+              "Date": "2017-08-26",
               "Rate": 2400
             },
             {
               "Currency": "PHP",
-              "Date": "2017-04-27",
+              "Date": "2017-08-27",
               "Rate": 2400
             },
             {
               "Currency": "PHP",
-              "Date": "2017-04-28",
+              "Date": "2017-08-28",
               "Rate": 2400
             }
           ],
@@ -71,7 +71,7 @@
           "RateDesc": "",
           "Currency": "PHP",
           "Units": 4,
-          "StartDate": "2017-04-25",
+          "StartDate": "2017-08-25",
           "MyallocatorRateplanIds": [],
           "ChannelRoomType": "95159"
         }

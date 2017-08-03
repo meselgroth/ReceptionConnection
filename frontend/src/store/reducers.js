@@ -9,6 +9,7 @@ export default function rootReducer(state = {}, action) {
     return {
         bookings: persistentReducer(bookings)(state.bookings, action),
         roomBeds: roomBeds(state.roomBeds, action),
+        rooms: rooms(state.rooms, action),
         routing: routerReducer,
         dbInitComplete: dbInit(action)
     };
@@ -35,6 +36,12 @@ function bookings(state = [], action) {
 function roomBeds(state = [], action) {
     if (action.type === types.RECEIVE_ROOMBEDS) {
         return action.roomBeds;
+    }
+    return state;
+}
+function rooms(state = [], action) {
+    if (action.type === types.RECEIVE_ROOMS) {
+        return action.rooms;
     }
     return state;
 }

@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import DateService from './services/DateService';
 
 export default class BookingPage extends Component {
     constructor(props) {
         super(props);
+
         this.state = { checkin: DateService.CurrentDateInputFormat(), checkout: DateService.TomorrowInputFormat(), name: '', room: '', pax: 1 };
-        this.routeService = props.route.routeService;
-        this.bookingService = props.route.bookingService;
-        this.rooms = props.route.roomRepo.GetRooms();
     }
 
     handleChange = (event) => {
-        this.setState({[event.target.id] : event.target.value});
+        this.setState({ [event.target.id]: event.target.value });
     }
-    save = (e) => {
+    onSave = (e) => {
         e.preventDefault();
-        this.bookingService.Save(this.state);
+        this.props.Save(this.state);
     }
     render() {
-        let roomOptions = this.rooms.map(r => <option key={r.id} value={r.id}>{r.name}</option>);
+        let roomOptions = this.props.rooms.map(r => <option key={r.id} value={r.id}>{r.name}</option>);
         return (
             <div><h1>New Booking</h1>
                 <p>Enter details</p>
-                <form onSubmit={this.save}>
+                <form onSubmit={this.onSave}>
                     <div className='form-group row'>
                         <label htmlFor='checkin' className='col-sm-2'>Check in
                         </label>

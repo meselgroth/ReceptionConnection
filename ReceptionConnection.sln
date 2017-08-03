@@ -5,51 +5,7 @@ VisualStudioVersion = 15.0.26228.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C20A13D-37DD-4F97-9A97-E2A2A0518856}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api", "api\api.csproj", "{CDA0711F-171B-42D8-B63C-7B6D7CADAA70}"
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "frontend", "frontend\", "{868202B6-561B-469B-B43B-FE57828D6FE8}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_5006"
-		Debug.AspNetCompiler.PhysicalPath = "frontend\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_5006\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_5006"
-		Release.AspNetCompiler.PhysicalPath = "frontend\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_5006\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "5006"
-		SlnRelativePath = "frontend\"
-		StartServerOnDebug = "false"
-	EndProjectSection
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "build", "frontend\build\", "{84B19C33-9136-4F34-B098-8B9ABC46420E}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_1804"
-		Debug.AspNetCompiler.PhysicalPath = "frontend\build\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_1804\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_1804"
-		Release.AspNetCompiler.PhysicalPath = "frontend\build\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_1804\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "1804"
-		SlnRelativePath = "frontend\build\"
-		StartServerOnDebug = "false"
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReceptionConnection.Api", "api\ReceptionConnection.Api.csproj", "{CDA0711F-171B-42D8-B63C-7B6D7CADAA70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,12 +17,6 @@ Global
 		{CDA0711F-171B-42D8-B63C-7B6D7CADAA70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDA0711F-171B-42D8-B63C-7B6D7CADAA70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDA0711F-171B-42D8-B63C-7B6D7CADAA70}.Release|Any CPU.Build.0 = Release|Any CPU
-		{868202B6-561B-469B-B43B-FE57828D6FE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{868202B6-561B-469B-B43B-FE57828D6FE8}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{84B19C33-9136-4F34-B098-8B9ABC46420E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84B19C33-9136-4F34-B098-8B9ABC46420E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84B19C33-9136-4F34-B098-8B9ABC46420E}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{84B19C33-9136-4F34-B098-8B9ABC46420E}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

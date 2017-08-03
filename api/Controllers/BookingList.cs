@@ -12,7 +12,7 @@ namespace ReceptionConnection.Api.Controllers
     public class BookingList : Controller
     {
         [HttpPost]
-        public string Post([FromBody]string value)
+        public string Post()
         {
             var json = System.IO.File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), @"testData", "myallocatorBookingList.json"));
             return json; 

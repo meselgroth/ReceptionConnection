@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using ReceptionConnection.Api.Models;
 using ReceptionConnection.Api.Services;
@@ -22,42 +23,24 @@ namespace ReceptionConnection.Api.Controllers
             startDate = startDate ?? DateTime.Today.AddMonths(-1);
             endDate = endDate ?? DateTime.Today.AddMonths(1);
 
-            var bookings = _myallocatorService.PopulateBookings(startDate.Value, endDate.Value);
+            var bookings = _myallocatorService.GetBookings(startDate.Value, endDate.Value, true);
 
             return bookings;
         }
         [HttpGet]
-        public IEnumerable<Booking> Get(DateTime? startDate, DateTime? endDate)
+        public IEnumerable<Booking> GetLatestBookings(DateTime? startDate, DateTime? endDate)
         {
             startDate = startDate ?? DateTime.Today;
-            endDate = endDate ?? DateTime.Today.AddMonths(1);
+            endDate = endDate ?? DateTime.Today.AddDays(1);
 
-            return new Booking[] { new Booking() };
+            var bookings = _myallocatorService.GetBookings(startDate.Value, endDate.Value, false);
+
+            return bookings;
         }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public ActionResult AddBooking([FromBody] string booking)
         {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return Ok();
         }
     }
 }

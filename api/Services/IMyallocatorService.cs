@@ -6,6 +6,6 @@ namespace ReceptionConnection.Api.Services
 {
     public interface IMyallocatorService
     {
-        IEnumerable<Booking> PopulateBookings(DateTime startDate, DateTime endDate);
+        IEnumerable<Booking> GetBookings(DateTime startDate, DateTime endDate, bool isInitialLoad);
     }
 }

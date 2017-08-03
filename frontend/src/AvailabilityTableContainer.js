@@ -22,4 +22,3 @@ function mapStateToProps(state) {
     let errors = bedLayoutService.errors;
     return { beds, days, overbookingBeds, errors };
 }
-        // this.state = { beds: [], days: [], overbookingBeds: [], errors: '' };

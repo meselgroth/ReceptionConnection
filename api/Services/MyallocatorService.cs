@@ -12,36 +12,48 @@ namespace ReceptionConnection.Api.Services
     public class MyallocatorService : IMyallocatorService
     {
         private readonly AppSettings _appSettings;
+        private HttpClient _httpClient;
+        private Dictionary<string, string> _bodyDictionary;
 
         public MyallocatorService(IOptions<AppSettings> settings)
         {
             _appSettings = settings.Value;
-        }
 
-        public IEnumerable<Booking> PopulateBookings(DateTime startDate, DateTime endDate)
-        {
-            var httpClient = new HttpClient();
-            var myallocatorApi = _appSettings.Myallocator;// "http://api.myallocator.com/pms/v201408/json";
-            //const string myallocatorApi = "http://localhost:5000/api";
-
-            var bodyDictionary = new Dictionary<string, string> {
+            _httpClient = new HttpClient();
+            _bodyDictionary = new Dictionary<string, string> {
                 //TODO:mce switch to token
                 {"Auth/UserId", _appSettings.UserId},
                 {"Auth/PropertyId",_appSettings.PropertyId},
                 {"Auth/VendorId",_appSettings.VendorId},
-                {"Auth/VendorPassword",_appSettings.VendorPassword},
-                {"ArrivalStartDate",startDate.ToString("yyyy-MM-dd")},
-                {"ArrivalEndDate",endDate.ToString("yyyy-MM-dd")}};
+                {"Auth/VendorPassword",_appSettings.VendorPassword} };
+        }
 
-            var jsonRequest = JsonConvert.SerializeObject(bodyDictionary);
-            var stringContent = new StringContent(jsonRequest);
+        public IEnumerable<Booking> GetBookings(DateTime startDate, DateTime endDate, bool isInitialLoad)
+        {
+            if (isInitialLoad)
+            {
+                _bodyDictionary.Add("ArrivalStartDate", startDate.ToString("yyyy-MM-dd"));
+                _bodyDictionary.Add("ArrivalEndDate", endDate.ToString("yyyy-MM-dd"));
+            }
+            else
+            {
+                _bodyDictionary.Add("ModificationStartDate", startDate.ToString("yyyy-MM-dd"));
+                _bodyDictionary.Add("ModificationEndDate", endDate.ToString("yyyy-MM-dd"));
+            }
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(_bodyDictionary));
             stringContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-            var request = httpClient.PostAsync(myallocatorApi + "/BookingList", stringContent);
-            var result = request.Result;
-            var responseBody = result.Content.ReadAsStringAsync().Result;
-            dynamic content = JsonConvert.DeserializeObject(responseBody);
+
+            var request = _httpClient.PostAsync(_appSettings.Myallocator + "/BookingList", stringContent);
+            var responseBody = request.Result.Content.ReadAsStringAsync().Result;
 
             var bookings = new List<Booking>();
+            dynamic content = JsonConvert.DeserializeObject(responseBody);
+
+            if (content == null || content.Bookings == null)
+            {
+                return bookings;
+            }
 
             foreach (var booking in content.Bookings)
             {

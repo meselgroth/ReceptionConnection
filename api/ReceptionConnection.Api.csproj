@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
-    <AssemblyName>api</AssemblyName>
+    <AssemblyName>ReceptionConnection.Api</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>api</PackageId>
     <UserSecretsId>receptionconnection-api-20170228033326</UserSecretsId>

@@ -9,7 +9,7 @@ import ConfigureStore from './store/configureStore';
 
 import App from './App';
 import DeleteDbContainer from './DeleteDbContainer';
-import BookingPage from './BookingPage';
+import {BookingContainer} from './BookingContainer';
 import { } from 'bootstrap/dist/css/bootstrap.css';
 import { } from 'bootstrap/dist/css/bootstrap-theme.css';
 import './index.css';
@@ -26,7 +26,7 @@ ReactDOM.render(
       <div>
         <Route path="/" component={App} />
         <Route path="/deletedb" component={DeleteDbContainer} />
-        {/*<Route path="/booking" component={BookingPage} routeService={routeService} bookingService={bookingService} roomRepo={roomRepo} />*/}
+        <Route path="/booking" component={BookingContainer} />
       </div>
     </Router>
   </Provider>,

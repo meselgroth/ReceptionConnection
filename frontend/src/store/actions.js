@@ -4,6 +4,7 @@ import * as types from './actionTypes';
 export default function initialLoad() {
     return function (dispatch, getState) {
         dispatch(receiveRoomBeds(new RoomRepo().GetRoomBeds()));
+        dispatch(receiveRooms(new RoomRepo().GetRooms()));
 
         if (getState().bookings.length > 0) {
             //data comes from database
@@ -25,8 +26,22 @@ export function receiveBookings(bookings) {
 }
 
 export function addBooking(booking){
+    return function(dispatch, getState) {
+        return fetch('/api/Bookings', { method: "POST", body: booking })
+                .then(response => response.json())  // handle response errors like not logged in
+                .then(json => dispatch(bookingAdded(json)));
+    };
+}
+
+export function bookingAdded(booking){
     return {
         type: types.ADD_BOOKING, booking
+    };
+}
+
+function receiveRooms(json) {
+    return {
+        type: types.RECEIVE_ROOMS, rooms: json
     };
 }
 
