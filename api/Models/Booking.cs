@@ -8,5 +8,6 @@ namespace ReceptionConnection.Api.Models
         public string Checkin { get; internal set; }
         public string Checkout { get; internal set; }
         public string RoomId { get; internal set; }
+        public string NumOfPeople { get; set; }
     }
 }

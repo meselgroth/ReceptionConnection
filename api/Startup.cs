@@ -46,6 +46,7 @@ namespace ReceptionConnection.Api
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            //loggerFactory.AddAzureWebAppDiagnostics();
 
             app.UseStaticFiles();
             app.UseMvc();

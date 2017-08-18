@@ -20,12 +20,14 @@ namespace ReceptionConnection.Api.Services
             _appSettings = settings.Value;
 
             _httpClient = new HttpClient();
-            _bodyDictionary = new Dictionary<string, string> {
+            _bodyDictionary = new Dictionary<string, string>
+            {
                 //TODO:mce switch to token
                 {"Auth/UserId", _appSettings.UserId},
-                {"Auth/PropertyId",_appSettings.PropertyId},
-                {"Auth/VendorId",_appSettings.VendorId},
-                {"Auth/VendorPassword",_appSettings.VendorPassword} };
+                {"Auth/PropertyId", _appSettings.PropertyId},
+                {"Auth/VendorId", _appSettings.VendorId},
+                {"Auth/VendorPassword", _appSettings.VendorPassword}
+            };
         }
 
         public IEnumerable<Booking> GetBookings(DateTime startDate, DateTime endDate, bool isInitialLoad)
@@ -50,10 +52,8 @@ namespace ReceptionConnection.Api.Services
             var bookings = new List<Booking>();
             dynamic content = JsonConvert.DeserializeObject(responseBody);
 
-            if (content == null || content.Bookings == null)
-            {
-                return bookings;
-            }
+            if (content == null) return bookings;
+            if (content.Bookings == null) return bookings;
 
             foreach (var booking in content.Bookings)
             {
@@ -70,6 +70,53 @@ namespace ReceptionConnection.Api.Services
             }
 
             return bookings;
+        }
+
+        public void AddBooking(Booking booking)
+        {
+            _bodyDictionary.Add("Channels", "all");
+            var allocationDictionary = new Dictionary<string, string>
+            {
+                {"ArrivalStartDate", booking.Checkin},
+                {"ArrivalEndDate", booking.Checkout},
+                {"RoomId", booking.RoomId},
+                {"Units", booking.NumOfPeople}
+
+            };
+            _bodyDictionary.Add("Allocation", JsonConvert.SerializeObject(allocationDictionary));
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(_bodyDictionary));
+            stringContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+            var request = _httpClient.PostAsync(_appSettings.Myallocator + "/BookingList", stringContent);
+            var responseBody = request.Result.Content.ReadAsStringAsync().Result;
+        }
+
+        public List<RoomType> GetRoomTypes()
+        {
+            var stringContent = new StringContent(JsonConvert.SerializeObject(_bodyDictionary));
+            stringContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+            var request = _httpClient.PostAsync(_appSettings.Myallocator + "/RoomList", stringContent);
+            var responseBody = request.Result.Content.ReadAsStringAsync().Result;
+
+            var roomTypes = new List<RoomType>();
+            dynamic content = JsonConvert.DeserializeObject(responseBody);
+
+            if (content == null) return roomTypes;
+            if (content.Bookings == null) return roomTypes;
+
+            foreach (var roomType in content.RoomTypes)
+            {
+                roomTypes.Add(new RoomType
+                {
+                    Id = roomType.CustomerLName,
+                    Label = roomType.Label,
+                    NumOfRooms = roomType.Units,
+                    Occupancy = roomType.Occupancy
+                });
+            }
+            return roomTypes;
         }
     }
 }

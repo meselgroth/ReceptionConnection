@@ -19,7 +19,7 @@ export default class BookingPage extends Component {
     render() {
         let roomOptions = this.props.rooms.map(r => <option key={r.id} value={r.id}>{r.name}</option>);
         return (
-            <div><h1>New Booking</h1>
+            <div><h1>New</h1>
                 <p>Enter details</p>
                 <form onSubmit={this.onSave}>
                     <div className='form-group row'>

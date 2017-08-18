@@ -13,5 +13,5 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
-    return { Save: function () { dispatch(addBooking(ownProps.booking)); } };
+    return { Save: function (booking) { dispatch(addBooking(booking)); } };
 }
