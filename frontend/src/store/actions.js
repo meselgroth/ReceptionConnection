@@ -1,21 +1,24 @@
 import RoomRepo from '../services/RoomRepo';
 import * as types from './actionTypes';
+import { withRouter } from 'react-router';
+import { push } from 'react-router-redux';
 
 export default function initialLoad() {
     return function (dispatch, getState) {
-        dispatch(receiveRoomBeds(new RoomRepo().GetRoomBeds()));
-        dispatch(receiveRooms(new RoomRepo().GetRooms()));
 
-        if (getState().bookings.length > 0) {
-            //data comes from database
-            // call upload
-            //return fetch('/api/Bookings/InitialLoad', { headers: {} });
-        }
-        else {
-            return fetch('/api/Bookings/InitialLoad', { headers: {} })
+        let bookingsPromise = fetch('/api/Bookings/InitialLoad', { headers: {} })
+            .then(response => response.json())  // handle response errors like not logged in
+            .then(json => dispatch(receiveBookings(json)));
+
+        let roomTypesPromise;
+
+        if (getState().roomTypes.length > 0) {
+            roomTypesPromise = fetch('/api/Bookings/roomTypes', { headers: {} })
                 .then(response => response.json())  // handle response errors like not logged in
-                .then(json => dispatch(receiveBookings(json)));
+                .then(json => dispatch(receiveRoomBeds(json)));
         }
+
+        return Promise.all([bookingsPromise, roomTypesPromise]);
     };
 }
 
@@ -25,15 +28,16 @@ export function receiveBookings(bookings) {
     };
 }
 
-export function addBooking(booking){
-    return function(dispatch, getState) {
-        return fetch('/api/Bookings', { method: 'POST', body: JSON.stringify(booking), headers: { 'content-type': 'application/json'} })
-                .then(response => response.json())  // handle response errors like not logged in
-                .then(json => dispatch(bookingAdded(json)));
+export function addBooking(booking) {
+    return function (dispatch, getState) {
+        return fetch('/api/Bookings', { method: 'POST', body: JSON.stringify(booking), headers: { 'content-type': 'application/json' } })
+            .then(response => response.json())  // handle response errors like not logged in
+            .then(json => dispatch(bookingAdded(json)));
     };
 }
 
-export function bookingAdded(booking){
+export function bookingAdded(booking) {
+    push('/');
     return {
         type: types.ADD_BOOKING, booking
     };
