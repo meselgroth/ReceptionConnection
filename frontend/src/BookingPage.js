@@ -6,7 +6,7 @@ export default class BookingPage extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { checkin: DateService.CurrentDateInputFormat(), checkout: DateService.TomorrowInputFormat(), name: '', room: '', pax: 1 };
+        this.state = { checkin: DateService.CurrentDateInputFormat(), checkout: DateService.TomorrowInputFormat(), name: '', roomId: '', numofpeople: 1 };
     }
 
     handleChange = (event) => {
@@ -58,7 +58,7 @@ export default class BookingPage extends Component {
                         <label htmlFor='pax' className='col-sm-2'>Pax
                         </label>
                         <div className='col-sm-10'>
-                            <input type="number" id='pax' value={this.state.pax} onChange={this.handleChange} className="form-control" required />
+                            <input type="number" id='pax' value={this.state.numofpeople} onChange={this.handleChange} className="form-control" required />
                         </div>
                     </div>
 

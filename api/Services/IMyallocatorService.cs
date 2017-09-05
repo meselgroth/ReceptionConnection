@@ -7,7 +7,7 @@ namespace ReceptionConnection.Api.Services
     public interface IMyallocatorService
     {
         IEnumerable<Booking> GetBookings(DateTime startDate, DateTime endDate, bool isInitialLoad);
-        void AddBooking(Booking booking);
+        void AvailabilityUpdate(Availability availability);
         List<RoomType> GetRoomTypes();
         Availability GetAvailability(string startDate, string endDate);
     }

@@ -13,11 +13,13 @@ namespace ReceptionConnection.Api.Controllers
     public class BookingsController : Controller
     {
         private readonly IMyallocatorService _myallocatorService;
+        private readonly IAvailabilityService _availabilityService;
         private readonly ILogger _logger;
 
-        public BookingsController(IMyallocatorService myallocatorService, ILogger<BookingsController> logger)
+        public BookingsController(IMyallocatorService myallocatorService, IAvailabilityService availabilityService,ILogger<BookingsController> logger)
         {
             _myallocatorService = myallocatorService;
+            _availabilityService = availabilityService;
             _logger = logger;
         }
 
@@ -48,7 +50,7 @@ namespace ReceptionConnection.Api.Controllers
         {
             _logger.LogInformation($"AddBooking: {JsonConvert.SerializeObject(booking)}");
 
-            _myallocatorService.AddBooking(booking);
+            _availabilityService.AddBooking(booking);
             return Ok(booking);
         }
     }

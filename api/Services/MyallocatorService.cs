@@ -100,25 +100,33 @@ namespace ReceptionConnection.Api.Services
             return bookings;
         }
 
-        public void AddBooking(Booking booking)
+        public void AvailabilityUpdate(Availability availability)
         {
             GetToken();
 
-            _bodyDictionary.Add("Channels", "all");
-            var allocationDictionary = new Dictionary<string, string>
+            var bodyDictionary = new Dictionary<string, object>
             {
-                {"ArrivalStartDate", booking.Checkin},
-                {"ArrivalEndDate", booking.Checkout},
-                {"RoomId", booking.RoomId},
-                {"Units", booking.NumOfPeople}
-
+                {"Auth/PropertyId", _appSettings.PropertyId},
+                {"Auth/VendorId", _appSettings.VendorId},
+                {"Auth/VendorPassword", _appSettings.VendorPassword},
+                {"Auth/UserToken", _token},
+                {"Channels", new List<string> {"all"}}
             };
-            _bodyDictionary.Add("Allocation", JsonConvert.SerializeObject(allocationDictionary));
 
-            var stringContent = new StringContent(JsonConvert.SerializeObject(_bodyDictionary));
+            var allocationDictionary = new List<Allocation>
+            {
+                new Allocation{StartDate = availability.Rooms[0].Dates[0].Date,
+                    EndDate = availability.Rooms[0].Dates[0].Date,
+                    RoomId = availability.Rooms[0].RoomId,
+                    Units = availability.Rooms[0].Dates[0].Units}
+            };
+            bodyDictionary.Add("Allocations", allocationDictionary);
+
+            var json = JsonConvert.SerializeObject(bodyDictionary);
+            var stringContent = new StringContent(json);
             stringContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
-            var request = _httpClient.PostAsync(_appSettings.Myallocator + "/BookingList", stringContent);
+            var request = _httpClient.PostAsync(_appSettings.Myallocator + "/ARIUpdate", stringContent);
             var responseBody = request.Result.Content.ReadAsStringAsync().Result;
         }
 
@@ -154,6 +162,8 @@ namespace ReceptionConnection.Api.Services
 
         public Availability GetAvailability(string startDate, string endDate)
         {
+            GetToken();
+
             _bodyDictionary.Add("StartDate", startDate);
             _bodyDictionary.Add("EndDate", endDate);
 
@@ -168,5 +178,13 @@ namespace ReceptionConnection.Api.Services
 
             return availability;
         }
+    }
+
+    public class Allocation
+    {
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
+        public string RoomId { get; set; }
+        public string Units { get; set; }
     }
 }

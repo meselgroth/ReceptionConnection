@@ -33,6 +33,7 @@ namespace ReceptionConnection.Api
             // Add framework services.
             services.AddMvc();
             services.AddTransient<IMyallocatorService, MyallocatorService>();
+            services.AddTransient<IAvailabilityService, AvailabilityService>();
             services.Configure<AppSettings>(Configuration);
 
         }
