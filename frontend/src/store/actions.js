@@ -12,10 +12,10 @@ export default function initialLoad() {
 
         let roomTypesPromise;
 
-        if (getState().roomTypes.length > 0) {
-            roomTypesPromise = fetch('/api/Bookings/roomTypes', { headers: {} })
+        if (getState().roomTypes.length === 0) {
+            roomTypesPromise = fetch('/api/RoomTypes', { headers: {} })
                 .then(response => response.json())  // handle response errors like not logged in
-                .then(json => dispatch(receiveRoomBeds(json)));
+                .then(json => dispatch(receiveRoomTypes(json)));
         }
 
         return Promise.all([bookingsPromise, roomTypesPromise]);
@@ -43,15 +43,9 @@ export function bookingAdded(booking) {
     };
 }
 
-function receiveRooms(json) {
+function receiveRoomTypes(json) {
     return {
-        type: types.RECEIVE_ROOMS, rooms: json
-    };
-}
-
-function receiveRoomBeds(json) {
-    return {
-        type: types.RECEIVE_ROOMBEDS, roomBeds: json
+        type: types.RECEIVE_ROOMTYPES, roomTypes: json
     };
 }
 

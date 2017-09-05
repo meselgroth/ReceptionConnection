@@ -1,0 +1,16 @@
+﻿{
+  "RoomTypes": [
+    {
+      "RoomId": "95159",
+      "Gender": "MI",
+      "Label": "6 Bed Dorm",
+      "PMSRoomId": null,
+      "PrivateRoom": "false",
+      "Disabled": "false",
+      "ICalLink": "https://api.myallocator.com/callback/ota/air/v201506/ical?pid=18381&rid=95159&hash=72d69",
+      "Units": "1",
+      "Occupancy": "6"
+    }
+  ],
+  "Success": true
+}

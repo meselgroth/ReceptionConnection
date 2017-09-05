@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using ReceptionConnection.Api.Controllers;
 using ReceptionConnection.Api.Services;
 
 namespace ReceptionConnection.Api
@@ -24,7 +19,7 @@ namespace ReceptionConnection.Api
 
             if (env.IsDevelopment())
             {
-                builder.AddUserSecrets();
+                builder.AddUserSecrets<Startup>();
             }
 
             Configuration = builder.Build();
@@ -39,6 +34,7 @@ namespace ReceptionConnection.Api
             services.AddMvc();
             services.AddTransient<IMyallocatorService, MyallocatorService>();
             services.Configure<AppSettings>(Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,5 +8,6 @@ namespace ReceptionConnection.Api.Services
     {
         IEnumerable<Booking> GetBookings(DateTime startDate, DateTime endDate, bool isInitialLoad);
         void AddBooking(Booking booking);
+        List<RoomType> GetRoomTypes();
     }
 }

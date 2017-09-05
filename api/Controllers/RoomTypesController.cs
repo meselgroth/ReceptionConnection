@@ -21,14 +21,11 @@ namespace ReceptionConnection.Api.Controllers
             _logger = logger;
         }
         [HttpGet]
-        public IEnumerable<RoomType> GetRoomTypes(DateTime? startDate, DateTime? endDate)
+        public IEnumerable<RoomType> GetRoomTypes()
         {
-            startDate = startDate ?? DateTime.Today;
-            endDate = endDate ?? DateTime.Today.AddDays(1);
+            var roomTypes = _myallocatorService.GetRoomTypes();
 
-            var bookings = _myallocatorService.GetBookings(startDate.Value, endDate.Value, false);
-
-            return bookings;
+            return roomTypes;
         }
     }
 }
