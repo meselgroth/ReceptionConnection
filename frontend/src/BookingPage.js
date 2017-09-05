@@ -47,7 +47,7 @@ export default class BookingPage extends Component {
                         <label htmlFor='roomId' className='col-sm-2'>Room
                         </label>
                         <div className='col-sm-10'>
-                            <select id="roomId" value={this.state.roomId} onChange={this.handleChange} className="form-control" required >
+                            <select id="roomId" value={this.state.roomId} onChange={this.handleChange} className="form-control"  >
                                 <option></option>
                                 {roomOptions}
                             </select>
