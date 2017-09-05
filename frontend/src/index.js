@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import { Route, HashRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import { syncHistoryWithStore } from 'react-router-redux';
-
 import ConfigureStore from './store/configureStore';
 
 import App from './App';
@@ -16,9 +14,6 @@ import './index.css';
 
 let configureStore = new ConfigureStore();
 let store = configureStore.store;
-
-// const history = syncHistoryWithStore(browserHistory, store);
-
 
 ReactDOM.render(
   <Provider store={store}>

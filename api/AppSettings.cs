@@ -8,5 +8,6 @@
         public string UserId { get; set; }
         public string PropertyId { get; set; }
         public string Myallocator { get; set; }
+        public string UserToken { get; set; }
     }
 }

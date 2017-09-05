@@ -26,7 +26,7 @@ namespace ReceptionConnection.Api.Controllers
             startDate = startDate ?? DateTime.Today;
             endDate = endDate ?? DateTime.Today.AddDays(1);
 
-            var bookings = _myallocatorService.GetBookings(startDate.Value, endDate.Value, false);
+            var bookings = new List<RoomType>();
 
             return bookings;
         }

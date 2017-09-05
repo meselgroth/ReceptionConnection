@@ -23,7 +23,7 @@ namespace ReceptionConnection.Api.Services
             _bodyDictionary = new Dictionary<string, string>
             {
                 //TODO:mce switch to token
-                {"Auth/UserId", _appSettings.UserId},
+                {"Auth/UserToken", _appSettings.UserToken},
                 {"Auth/PropertyId", _appSettings.PropertyId},
                 {"Auth/VendorId", _appSettings.VendorId},
                 {"Auth/VendorPassword", _appSettings.VendorPassword}
@@ -117,6 +117,24 @@ namespace ReceptionConnection.Api.Services
                 });
             }
             return roomTypes;
+        }
+
+
+        public Availability GetAvailability(string startDate, string endDate)
+        {
+            _bodyDictionary.Add("StartDate", startDate);
+            _bodyDictionary.Add("EndDate", endDate);
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(_bodyDictionary));
+            stringContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+            var request = _httpClient.PostAsync(_appSettings.Myallocator + "/RoomAvailabilityList", stringContent);
+            var responseBody = request.Result.Content.ReadAsStringAsync().Result;
+
+            var availability = JsonConvert.DeserializeObject<Availability>(responseBody);
+
+
+            return availability;
         }
     }
 }
