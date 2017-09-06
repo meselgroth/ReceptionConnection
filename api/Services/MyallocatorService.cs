@@ -93,7 +93,8 @@ namespace ReceptionConnection.Api.Services
                     Nationality = customer.CustomerNationality,
                     Checkin = booking.StartDate,
                     Checkout = booking.EndDate,
-                    RoomId = booking.Rooms[0].ChannelRoomType
+                    RoomId = booking.Rooms[0].ChannelRoomType,
+                    NumOfPeople = booking.Rooms[0].Units
                 });
             }
 

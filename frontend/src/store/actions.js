@@ -32,12 +32,11 @@ export function addBooking(booking) {
     return function (dispatch, getState) {
         return fetch('/api/Bookings', { method: 'POST', body: JSON.stringify(booking), headers: { 'content-type': 'application/json' } })
             .then(response => response.json())  // handle response errors like not logged in
-            .then(json => dispatch(bookingAdded(json)));
+            .then(json => dispatch(bookingAdded(booking)));
     };
 }
 
 export function bookingAdded(booking) {
-    push('/');
     return {
         type: types.ADD_BOOKING, booking
     };

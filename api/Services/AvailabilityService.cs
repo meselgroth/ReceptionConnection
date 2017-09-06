@@ -15,12 +15,19 @@ namespace ReceptionConnection.Api.Services
         {
             var availability = _myallocatorService.GetAvailability(booking.Checkin, booking.Checkout);
 
-            var result = (int.Parse(availability.Rooms[0].Dates[0].Units) - int.Parse(booking.NumOfPeople));
-            if (result<0)
+            var checkin = DateTime.Parse(booking.Checkin);
+            var checkout = DateTime.Parse(booking.Checkout);
+            var numOfNights = checkout.Subtract(checkin).Days;
+
+            for (var i = 0; i < numOfNights; i++)
             {
-                throw new Exception();
+                var result = (int.Parse(availability.Rooms[0].Dates[i].Units) - int.Parse(booking.NumOfPeople));
+                if (result < 0)
+                {
+                    throw new Exception();
+                }
+                availability.Rooms[0].Dates[i].Units = result.ToString();
             }
-            availability.Rooms[0].Dates[0].Units = result.ToString();
 
             _myallocatorService.AvailabilityUpdate(availability);
 

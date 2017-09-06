@@ -58,7 +58,7 @@ export default class BookingPage extends Component {
                         <label htmlFor='pax' className='col-sm-2'>Pax
                         </label>
                         <div className='col-sm-10'>
-                            <input type="number" id='pax' value={this.state.numofpeople} onChange={this.handleChange} className="form-control" required />
+                            <input type="number" id='numofpeople' value={this.state.numofpeople} onChange={this.handleChange} className="form-control" required />
                         </div>
                     </div>
 
