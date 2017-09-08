@@ -1,0 +1,314 @@
+{
+    "Rooms": [
+        {
+            "isPrivate": false,
+            "RoomId": 95159,
+            "PropertyId": 18381,
+            "Dates": [
+                {
+                    "Closed": 0,
+                    "Price": "600.00",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Date": "2017-09-01",
+                    "MinStay": 1,
+                    "Units": 6,
+                    "ClosedForArrival": 0
+                },
+                {
+                    "Closed": 0,
+                    "Price": "600.00",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Date": "2017-09-02",
+                    "MinStay": 1,
+                    "ClosedForArrival": 0,
+                    "Units": 6
+                },
+                {
+                    "Date": "2017-09-03",
+                    "Units": 6,
+                    "ClosedForArrival": 0,
+                    "MinStay": 1,
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Closed": 0,
+                    "Price": "600.00"
+                },
+                {
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Closed": 0,
+                    "Price": "600.00",
+                    "Date": "2017-09-04",
+                    "Units": 6,
+                    "ClosedForArrival": 0,
+                    "MinStay": 1
+                },
+                {
+                    "Closed": 0,
+                    "Price": "600.00",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Date": "2017-09-05",
+                    "MinStay": 1,
+                    "ClosedForArrival": 0,
+                    "Units": 0
+                },
+                {
+                    "Date": "2017-09-06",
+                    "MinStay": 1,
+                    "Units": 6,
+                    "ClosedForArrival": 0,
+                    "Closed": 0,
+                    "Price": "600.00",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0
+                },
+                {
+                    "Closed": 0,
+                    "Price": "600.00",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "MinStay": 1,
+                    "ClosedForArrival": 0,
+                    "Units": 2,
+                    "Date": "2017-09-07"
+                },
+                {
+                    "ClosedForDeparture": 0,
+                    "MaxStay": 0,
+                    "Price": "600.00",
+                    "Closed": 0,
+                    "Units": 2,
+                    "ClosedForArrival": 0,
+                    "MinStay": 1,
+                    "Date": "2017-09-08"
+                },
+                {
+                    "Closed": 0,
+                    "Price": "600.00",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Date": "2017-09-09",
+                    "MinStay": 1,
+                    "ClosedForArrival": 0,
+                    "Units": 2
+                },
+                {
+                    "Price": "600.00",
+                    "Closed": 0,
+                    "ClosedForDeparture": 0,
+                    "MaxStay": 0,
+                    "Date": "2017-09-10",
+                    "MinStay": 1,
+                    "ClosedForArrival": 0,
+                    "Units": 6
+                },
+                {
+                    "ClosedForArrival": 0,
+                    "Units": 6,
+                    "MinStay": 1,
+                    "Date": "2017-09-11",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Closed": 0,
+                    "Price": "600.00"
+                },
+                {
+                    "ClosedForArrival": 0,
+                    "Units": 6,
+                    "MinStay": 1,
+                    "Date": "2017-09-12",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Closed": 0,
+                    "Price": "600.00"
+                },
+                {
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Closed": 0,
+                    "Price": "600.00",
+                    "Date": "2017-09-13",
+                    "ClosedForArrival": 0,
+                    "Units": 6,
+                    "MinStay": 1
+                },
+                {
+                    "Date": "2017-09-14",
+                    "MinStay": 1,
+                    "ClosedForArrival": 0,
+                    "Units": 6,
+                    "Price": "600.00",
+                    "Closed": 0,
+                    "ClosedForDeparture": 0,
+                    "MaxStay": 0
+                },
+                {
+                    "ClosedForDeparture": 0,
+                    "MaxStay": 0,
+                    "Price": "600.00",
+                    "Closed": 0,
+                    "Date": "2017-09-15",
+                    "Units": 6,
+                    "ClosedForArrival": 0,
+                    "MinStay": 1
+                },
+                {
+                    "Units": 6,
+                    "ClosedForArrival": 0,
+                    "MinStay": 1,
+                    "Date": "2017-09-16",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Closed": 0,
+                    "Price": "600.00"
+                },
+                {
+                    "Price": "600.00",
+                    "Closed": 0,
+                    "ClosedForDeparture": 0,
+                    "MaxStay": 0,
+                    "Date": "2017-09-17",
+                    "MinStay": 1,
+                    "Units": 6,
+                    "ClosedForArrival": 0
+                },
+                {
+                    "MinStay": 1,
+                    "ClosedForArrival": 0,
+                    "Units": 6,
+                    "Date": "2017-09-18",
+                    "Closed": 0,
+                    "Price": "600.00",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0
+                },
+                {
+                    "Units": 6,
+                    "ClosedForArrival": 0,
+                    "MinStay": 1,
+                    "Date": "2017-09-19",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Closed": 0,
+                    "Price": "600.00"
+                },
+                {
+                    "ClosedForArrival": 0,
+                    "Units": 6,
+                    "MinStay": 1,
+                    "Date": "2017-09-20",
+                    "ClosedForDeparture": 0,
+                    "MaxStay": 0,
+                    "Price": "600.00",
+                    "Closed": 0
+                },
+                {
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Closed": 0,
+                    "Price": "600.00",
+                    "Date": "2017-09-21",
+                    "Units": 6,
+                    "ClosedForArrival": 0,
+                    "MinStay": 1
+                },
+                {
+                    "Date": "2017-09-22",
+                    "MinStay": 1,
+                    "ClosedForArrival": 0,
+                    "Units": 6,
+                    "Price": "600.00",
+                    "Closed": 0,
+                    "ClosedForDeparture": 0,
+                    "MaxStay": 0
+                },
+                {
+                    "Date": "2017-09-23",
+                    "MinStay": 1,
+                    "ClosedForArrival": 0,
+                    "Units": 6,
+                    "Closed": 0,
+                    "Price": "600.00",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0
+                },
+                {
+                    "ClosedForArrival": 0,
+                    "Units": 6,
+                    "MinStay": 1,
+                    "Date": "2017-09-24",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Closed": 0,
+                    "Price": "600.00"
+                },
+                {
+                    "Date": "2017-09-25",
+                    "MinStay": 1,
+                    "Units": 6,
+                    "ClosedForArrival": 0,
+                    "Price": "600.00",
+                    "Closed": 0,
+                    "ClosedForDeparture": 0,
+                    "MaxStay": 0
+                },
+                {
+                    "Closed": 0,
+                    "Price": "600.00",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Date": "2017-09-26",
+                    "MinStay": 1,
+                    "Units": 6,
+                    "ClosedForArrival": 0
+                },
+                {
+                    "Closed": 0,
+                    "Price": "600.00",
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Date": "2017-09-27",
+                    "MinStay": 1,
+                    "ClosedForArrival": 0,
+                    "Units": 6
+                },
+                {
+                    "Date": "2017-09-28",
+                    "Units": 6,
+                    "ClosedForArrival": 0,
+                    "MinStay": 1,
+                    "MaxStay": 0,
+                    "ClosedForDeparture": 0,
+                    "Closed": 0,
+                    "Price": "600.00"
+                },
+                {
+                    "Price": "600.00",
+                    "Closed": 0,
+                    "ClosedForDeparture": 0,
+                    "MaxStay": 0,
+                    "Date": "2017-09-29",
+                    "MinStay": 1,
+                    "ClosedForArrival": 0,
+                    "Units": 6
+                },
+                {
+                    "Price": "600.00",
+                    "Closed": 0,
+                    "ClosedForDeparture": 0,
+                    "MaxStay": 0,
+                    "Date": "2017-09-30",
+                    "MinStay": 1,
+                    "ClosedForArrival": 0,
+                    "Units": 6
+                }
+            ],
+            "RoomName": "6 Bed Dorm",
+            "RatePlanId": 0
+        }
+    ],
+    "Success": true
+}

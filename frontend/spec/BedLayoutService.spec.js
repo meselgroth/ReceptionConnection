@@ -30,7 +30,7 @@ describe("BedLayoutService", () => {
   });
 
   it("MakeLayout puts 2 pax booking in correct days", () => {
-    bookings = [{ name: 'james', checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4), roomId: 0, pax: 2 }];
+    bookings = [{ name: 'james', checkin: new Date(2017, 1, 2), checkout: new Date(2017, 1, 4), roomId: 0, numOfPeople: 2 }];
     let beds = bedLayoutService.MakeLayout(bookings, roomBeds);
 
     expect(beds[1].days[1].name).toBe('james');

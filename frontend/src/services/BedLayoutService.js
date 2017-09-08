@@ -45,8 +45,8 @@ export default class BedLayoutService {
                 numOfNights = DateService.CalcDaysBetween(this.startDate, booking.checkout);
             }
 
-            let pax = booking.pax ? booking.pax : 1;
-            for (let i = 0; i < pax; i++) {
+            let numOfPeople = booking.numOfPeople ? booking.numOfPeople : 1;
+            for (let i = 0; i < numOfPeople; i++) {
                 for (let dayIndex = startDay; dayIndex < numOfNights + startDay; dayIndex++) {
                     if (dayIndex >= this.days.length) break;
                     while (bedIndex < beds.length && beds[bedIndex].days[dayIndex].name !== undefined) bedIndex++;

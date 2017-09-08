@@ -113,14 +113,19 @@ namespace ReceptionConnection.Api.Services
                 {"Auth/UserToken", _token},
                 {"Channels", new List<string> {"all"}}
             };
+            var allocationDictionary = new List<Allocation>();
 
-            var allocationDictionary = new List<Allocation>
+            foreach (var availPrice in availability.Rooms[0].Dates)
             {
-                new Allocation{StartDate = availability.Rooms[0].Dates[0].Date,
-                    EndDate = availability.Rooms[0].Dates[0].Date,
+                var allocation = new Allocation
+                {
+                    StartDate = availPrice.Date,
+                    EndDate = availPrice.Date,
                     RoomId = availability.Rooms[0].RoomId,
-                    Units = availability.Rooms[0].Dates[0].Units}
-            };
+                    Units = availPrice.Units
+                };
+                allocationDictionary.Add(allocation);
+            }
             bodyDictionary.Add("Allocations", allocationDictionary);
 
             var json = JsonConvert.SerializeObject(bodyDictionary);
